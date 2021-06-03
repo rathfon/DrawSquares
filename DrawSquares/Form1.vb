@@ -9,14 +9,18 @@
         Dim row As Integer = 1
         Dim count As Integer = 1
         Dim x_offset As Integer = 1
-        Dim y_offset As Integer = 45
+        Dim y_offset As Integer = 30
         Dim x_offset_add As Integer = 274.28
-        Dim y_offset_add As Integer = ((Me.Height - y_offset) / 5)
+        'Dim y_offset_add As Integer = ((Me.Height - y_offset) / 5) / 5
+        Dim y_offset_add As Integer = ((Me.Height - y_offset) / 5) / 5
 
         Do Until row = 6
             Console.WriteLine("drawing row: " & row & ", column: " & count)
             myGraphics = Graphics.FromHwnd(ActiveForm().Handle)
             myGraphics.DrawRectangle(pen:=myPen, x:=x_offset, y:=y_offset, width:=x_offset_add, height:=y_offset_add)
+
+            DrawParts(x_offset, y_offset) 'draw the internal squares
+
             If count = 7 Then
                 row += 1
                 count = 1
@@ -26,7 +30,7 @@
                 x_offset += x_offset_add
                 count += 1
             End If
-            DrawParts(x_offset, y_offset)
+
         Loop
         Me.Update()
     End Sub
@@ -38,7 +42,8 @@
         Dim x_offset As Integer = x
         Dim y_offset As Integer = y
         Dim x_offset_add As Integer = 274.28
-        Dim y_offset_add As Integer = ((Me.Height - y_offset) / 5) / 5
+        'Dim y_offset_add As Integer = (y_offset / 5) / 5
+        Dim y_offset_add As Integer = ((Me.Height - y_offset) / 5) / 2.5
 
         Do Until count = 6
             myg = Graphics.FromHwnd(ActiveForm().Handle)
